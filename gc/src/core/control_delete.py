@@ -11,7 +11,7 @@ from config import Config
 from utils import *
 
 
-etlLimit = "limit"
+etlLimit = "hour_limit"
 dayLimit = "day_limit"
 hourLimit = "hour_limit"
 monthLimit = "month_limit"
