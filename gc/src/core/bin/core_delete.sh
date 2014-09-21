@@ -81,17 +81,18 @@ deleteHdfsModule() {
 	fi	
 }
 
+
 # 删除ETL过期数据
 deleteEtlDir() {
 	stat_date=$2
-	ym=${stat_date:0:8}
+	ymd=${stat_date:0:8}
 	hh=${stat_date:8:2}
-	format_stat_date=$(date -d "$ym $hh" +%Y/%m/%d/%H)
+	format_stat_date=$(date -d "$ymd $hh" +%Y/%m/%d/%H)
 	if [[ $? -ne 0 ]]
 	then
 		echo "ETL DELETE Error: $2 format error..."  >>$elog
 	else
-		rm_etl_dir=$1/$format_stat_date
+		rm_etl_dir=$1/${format_stat_date}
 		deleteHdfsModule $rm_etl_dir
 	fi
 }

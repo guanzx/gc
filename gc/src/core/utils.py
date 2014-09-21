@@ -23,7 +23,7 @@ def get_this_month_str():
 
 def get_N_days_ago(dateStr,n):
     """ 获取前n天的日期"""
-    imeArray = time.strptime(dateStr, "%Y%m%d")
+    imeArray = time.strptime(dateStr,"%Y%m%d")
     bdt = time.mktime(imeArray)
     bdt -= int(n)*24*60*60
     ndt = datetime.datetime.fromtimestamp(bdt)
@@ -31,7 +31,7 @@ def get_N_days_ago(dateStr,n):
 
 def get_N_days_ago_with_hour(dateStr,n):
     """ 获取前n天的日期"""
-    imeArray = time.strptime(dateStr, "%Y%m%d%H")
+    imeArray = time.strptime(dateStr,"%Y%m%d%H")
     bdt = time.mktime(imeArray)
     bdt -= int(n)*24*60*60
     ndt = datetime.datetime.fromtimestamp(bdt)
@@ -54,3 +54,8 @@ def limitIsValide(limit):
         return True
     else:
         return False
+
+def isHour(statDate):
+    if len(statDate) == 10:
+        return True
+    return False
