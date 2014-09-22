@@ -72,7 +72,7 @@ if __name__ == "__main__":
         if is_valid_date(statDate):
             pass
         else:
-            print "DATE FORMAT ERROR ! Please enter the correct date[yyyymmddhh]..."
+            print "DATE FORMAT ERROR ! Please enter the correct date[yyyymmddhh]|[yyyymmdd]..."
             exit()
     else:
         print "INPUT ERROR"
