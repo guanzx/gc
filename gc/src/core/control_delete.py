@@ -33,19 +33,19 @@ def deligateCommomDelete(dir,dirName,params,envType,statDate,hourFlag,exInput):
             if exInput is True and hourFlag is False:
                 pass
             else:
-	            limit = config.get(dir,hourLimit)
-	            if "d" in limit:
-	                statDate1= statDate[0:8]
-	                hh = statDate[8:]
-	                n = getNStr(limit)
-	                rmDate = get_N_days_ago(statDate1,n)
-	                rmDate = rmDate + hh
-	            if "h" in limit:
-	                n = getNStr(limit)
-	                rmDate = get_N_hours_ago(statDate,n)
-	            if limitIsValide(limit):
-	                cmd = "./bin/core_delete.sh" + " -d " + dirName + " -r " + rmDate + " -e " + envType + " -t hour" 
-	                os.system(cmd)
+                limit = config.get(dir,hourLimit)
+                if "d" in limit:
+                    statDate1= statDate[0:8]
+                    hh = statDate[8:]
+                    n = getNStr(limit)
+                    rmDate = get_N_days_ago(statDate1,n)
+                    rmDate = rmDate + hh
+                if "h" in limit:
+                    n = getNStr(limit)
+                    rmDate = get_N_hours_ago(statDate,n)
+                if limitIsValide(limit):
+                    cmd = "./bin/core_delete.sh" + " -d " + dirName + " -r " + rmDate + " -e " + envType + " -t hour" 
+                    os.system(cmd)
 
 def handleDir(dir_options,config,dir_type,statDate,flag,exInput):
     for dir in dir_options:
