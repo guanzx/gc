@@ -140,6 +140,14 @@ deleteHdfsDir() {
 		dd=${stat_date:6:2}
 		dateList="$($HADOOP_INSTALL/bin/hadoop fs -ls $1/$3 2>/dev/null | awk 'NR != 1{print $8}' | awk -F"/" '{print $7}')"
 		
+		for m in $(seq -f %02g 01 $(( $((10#$mm)) -1 )) )
+		do 
+			if echo $dateList | grep -q $yyyy$m
+			then
+				deleteHdfsModule $1/$3/$yyyy$m"*"
+			fi
+		done
+		
 		for m in $(seq -f %02g 01 $mm)
 		do
 			for d in $(seq -f %02g 01 $dd)
@@ -160,7 +168,26 @@ deleteHdfsDir() {
 		dd=${stat_date:6:2}
 		hh=${stat_date:8:2}
 		dateList="$($HADOOP_INSTALL/bin/hadoop fs -ls $1/$3 2>/dev/null | awk 'NR != 1{print $8}' | awk -F"/" '{print $7}')"
+		for m in $(seq -f %02g 01 $(( $((10#$mm)) -1 )) )
+		do 
+			if echo $dateList | grep -q $yyyy$m
+			then
+				deleteHdfsModule $1/$3/$yyyy$m"*"
+			fi
+		done
 		
+		dateList="$($HADOOP_INSTALL/bin/hadoop fs -ls $1/$3 2>/dev/null | awk 'NR != 1{print $8}' | awk -F"/" '{print $7}')"
+		for m in $(seq -f %02g 01 $mm )
+		do 
+			for d in $(seq -f %02g 01 $(( $((10#$dd)) -1 )) )
+			do 
+				if echo $dateList | grep -q $yyyy$m$d
+				then
+					deleteHdfsModule $1/$3/$yyyy$m$d"*"
+				fi
+			done	
+		done
+		dateList="$($HADOOP_INSTALL/bin/hadoop fs -ls $1/$3 2>/dev/null | awk 'NR != 1{print $8}' | awk -F"/" '{print $7}')"
 		for m in $(seq -f %02g 01 $mm)
 		do
 			for d in $(seq -f %02g 01 $dd)
